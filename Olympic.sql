@@ -32,7 +32,6 @@ SET game_year = CAST(RIGHT(game,4)AS INTEGER)
     
 /* Deleted the countries that have
 little value to our project (countries/political entities that no longer exist) */
-    
 UPDATE olympia
 SET country = 'Germany'
 WHERE (country = 'German Democratic Republic (Germany)'
@@ -40,7 +39,6 @@ OR country = 'Federal Republic of Germany')
     
 
 -- DATA EXPLORATION PART
-
 - SELECT country, COUNT(*) AS gold_count
 FROM olympia
 WHERE medal = 'GOLD'
@@ -146,7 +144,6 @@ FROM top_sport
 WHERE best_sport = 1
 
 -- Check the country that are competitive in the sports in which we have existing resources. (Double Sub-query)
-    
 SELECT *
     FROM (SELECT *,
     RANK()OVER(PARTITION BY sport ORDER BY medal_count DESC) AS ranking
@@ -162,7 +159,6 @@ WHERE ranking <= 5
 
 /* Look at the medal profile of our partner countres. What sports are they good at 
 So that we can better design and promote our product */
-    
 WITH top_sport AS (SELECT country, sport, COUNT(*) AS medal_count
     FROM olympia
     WHERE country = 'Germany'
